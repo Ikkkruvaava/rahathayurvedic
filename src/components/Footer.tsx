@@ -1,4 +1,10 @@
+'use client';
+
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function Footer() {
+    const { t, language } = useLanguage();
+
     return (
         <footer style={{ background: 'var(--primary-dark)', color: 'var(--white)', padding: '60px 24px 30px' }}>
             <div className="container">
@@ -19,10 +25,10 @@ export default function Footer() {
                                     borderRadius: '4px'
                                 }}
                             />
-                            <h3 style={{ color: 'var(--white)', fontSize: '1.5rem' }}>Rahath Ayurvedic</h3>
+                            <h3 style={{ color: 'var(--white)', fontSize: '1.5rem' }}>{language === 'ml' ? 'റാഹത്ത് ആയുർവേദിക്' : 'Rahath Ayurvedic'}</h3>
                         </div>
                         <p style={{ opacity: 0.8, marginBottom: '24px', maxWidth: '300px' }}>
-                            Traditional Raw Herbal Medicines & Ayurvedic Support. Prepared with care for your health and well-being.
+                            {t.footer.desc}
                         </p>
                         <div style={{ display: 'flex', gap: '16px' }}>
                             <a href="https://www.facebook.com/profile.php?id=61587190377965" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--white)' }} aria-label="Facebook">
@@ -35,17 +41,17 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h4 style={{ color: 'var(--white)', marginBottom: '24px' }}>Useful Links</h4>
+                        <h4 style={{ color: 'var(--white)', marginBottom: '24px' }}>{t.footer.quick_links}</h4>
                         <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                            <li><a href="#why-choose" style={{ opacity: 0.8 }}>Why Choose Us</a></li>
-                            <li><a href="#specialities" style={{ opacity: 0.8 }}>Our Specialities</a></li>
-                            <li><a href="#process" style={{ opacity: 0.8 }}>Preparation Process</a></li>
-                            <li><a href="#location" style={{ opacity: 0.8 }}>Our Location</a></li>
+                            <li><a href="#why-choose" style={{ opacity: 0.8 }}>{t.why_choose.title}</a></li>
+                            <li><a href="#specialities" style={{ opacity: 0.8 }}>{t.specialities.title}</a></li>
+                            <li><a href="#process" style={{ opacity: 0.8 }}>{t.process.title}</a></li>
+                            <li><a href="#location" style={{ opacity: 0.8 }}>{t.localseo.title}</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 style={{ color: 'var(--white)', marginBottom: '24px' }}>Contact Details</h4>
+                        <h4 style={{ color: 'var(--white)', marginBottom: '24px' }}>{t.footer.contact}</h4>
                         <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                             <li style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -57,7 +63,7 @@ export default function Footer() {
                             </li>
                             <li style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                <span style={{ opacity: 0.8 }}>Hospital Junction, Mannarkkad</span>
+                                <span style={{ opacity: 0.8 }}>{t.localseo.address_value}</span>
                             </li>
                         </ul>
                     </div>
@@ -70,8 +76,7 @@ export default function Footer() {
                     fontSize: '0.9rem',
                     opacity: 0.6
                 }}>
-                    <p>© {new Date().getFullYear()} Rahath Ayurvedic. All rights reserved.</p>
-                    <p style={{ marginTop: '8px' }}>Designed for Traditional Wellness</p>
+                    <p>© {new Date().getFullYear()} {language === 'ml' ? 'റാഹത്ത് ആയുർവേദിക്' : 'Rahath Ayurvedic'}. {t.footer.all_rights}</p>
                 </div>
             </div>
         </footer>

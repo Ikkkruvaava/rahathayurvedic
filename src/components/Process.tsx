@@ -1,24 +1,30 @@
+'use client';
+
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function Process() {
+    const { t } = useLanguage();
+
     const steps = [
         {
-            title: "Natural Drying",
+            title: t.process.items[0].title,
             image: "/images/process-drying2.webp",
-            description: "Drying in clean, well-ventilated spaces under natural light."
+            description: t.process.items[0].desc
         },
         {
-            title: "Cutting Herbs",
+            title: t.process.items[1].title,
             image: "/images/process-cutting1.webp",
-            description: "Carefully selecting and cutting fresh herbs to retain potency."
+            description: t.process.items[1].desc
         },
         {
-            title: "Fine Grinding",
+            title: t.process.items[2].title,
             image: "/images/process-grinding1.webp",
-            description: "Traditional grinding methods to maintain herbal integrity."
+            description: t.process.items[2].desc
         },
         {
-            title: "Clean Storage",
+            title: t.process.items[3].title,
             image: "/images/process-storage2.webp",
-            description: "Hygienic storage in glass containers to ensure freshness."
+            description: t.process.items[3].desc
         }
     ];
 
@@ -34,9 +40,9 @@ export default function Process() {
                     gap: '24px'
                 }}>
                     <div style={{ maxWidth: '600px' }}>
-                        <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Our Preparation Process</h2>
+                        <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>{t.process.title}</h2>
                         <p style={{ color: 'var(--text-muted)' }}>
-                            Quality & hygiene priority with traditional methods. We ensure every gram of medicine is prepared with utmost care.
+                            {t.process.subtitle}
                         </p>
                     </div>
                     <div style={{
@@ -47,7 +53,7 @@ export default function Process() {
                         fontWeight: '600',
                         fontSize: '0.9rem'
                     }}>
-                        100% Traditional Methods
+                        {t.process.badge}
                     </div>
                 </div>
 

@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function EnquiryForm() {
+    const { t, language } = useLanguage();
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -31,38 +33,45 @@ export default function EnquiryForm() {
             });
 
             if (response.ok) {
-                alert('Success! Your enquiry has been sent automatically.');
+                alert(t.enquiry.success);
                 setFormData({ name: '', phone: '', concern: '', message: '' });
             } else {
-                alert('Something went wrong with the email. Please try WhatsApp instead.');
+                alert('Something went wrong. Please try WhatsApp.');
             }
         } catch (error) {
-            alert('Failed to send enquiry. Please check your connection.');
+            alert('Failed to send enquiry.');
         } finally {
             setIsSubmitting(false);
         }
     };
+
+    const concerns = [
+        t.specialities.items[0].title,
+        t.specialities.items[1].title,
+        t.specialities.items[2].title,
+        language === 'ml' ? 'മറ്റു കൺസൾട്ടേഷനുകൾ' : 'Other Consultation'
+    ];
 
     return (
         <section id="enquiry" style={{ background: 'var(--white)' }}>
             <div className="container" style={{ maxWidth: '800px' }}>
                 <div className="card form-card" style={{ padding: '60px' }}>
                     <div className="text-center" style={{ marginBottom: '40px' }}>
-                        <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Enquire Now</h2>
-                        <p style={{ color: 'var(--text-muted)' }}>Fill out the form below and we will get back to you shortly.</p>
+                        <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>{t.enquiry.title}</h2>
+                        <p style={{ color: 'var(--text-muted)' }}>{t.enquiry.subtitle}</p>
                     </div>
 
                     <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '24px' }}>
                         <div className="enquiry-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Your Name</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>{t.enquiry.name_label}</label>
                                 <input
                                     type="text"
                                     name="name"
                                     required
                                     value={formData.name}
                                     onChange={handleChange}
-                                    placeholder="e.g. Rahul"
+                                    placeholder={t.enquiry.name_placeholder}
                                     style={{
                                         width: '100%',
                                         padding: '14px 20px',
@@ -74,14 +83,14 @@ export default function EnquiryForm() {
                                 />
                             </div>
                             <div>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Phone Number</label>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>{t.enquiry.phone_label}</label>
                                 <input
                                     type="tel"
                                     name="phone"
                                     required
                                     value={formData.phone}
                                     onChange={handleChange}
-                                    placeholder="e.g. +91 98765 43210"
+                                    placeholder={t.enquiry.phone_placeholder}
                                     style={{
                                         width: '100%',
                                         padding: '14px 20px',
@@ -95,7 +104,7 @@ export default function EnquiryForm() {
                         </div>
 
                         <div>
-                            <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Health Concern</label>
+                            <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>{t.enquiry.concern_label}</label>
                             <select
                                 name="concern"
                                 required
@@ -111,22 +120,21 @@ export default function EnquiryForm() {
                                     appearance: 'none'
                                 }}
                             >
-                                <option value="">Select a concern</option>
-                                <option value="Raw Herbal Medicine">Raw Herbal Medicine</option>
-                                <option value="Piles Care Support">Piles Care Support</option>
-                                <option value="Postnatal Care">Postnatal Care</option>
-                                <option value="Other Consultation">Other Consultation</option>
+                                <option value="">{language === 'ml' ? 'ഒരു വിഭാഗം തിരഞ്ഞെടുക്കുക' : 'Select a concern'}</option>
+                                {concerns.map((concern, idx) => (
+                                    <option key={idx} value={concern}>{concern}</option>
+                                ))}
                             </select>
                         </div>
 
                         <div>
-                            <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Message</label>
+                            <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>{language === 'ml' ? 'സന്ദേശം' : 'Message'}</label>
                             <textarea
                                 name="message"
                                 rows={4}
                                 value={formData.message}
                                 onChange={handleChange}
-                                placeholder="How can we help you?"
+                                placeholder={t.enquiry.concern_placeholder}
                                 style={{
                                     width: '100%',
                                     padding: '14px 20px',
@@ -155,17 +163,17 @@ export default function EnquiryForm() {
                             }}
                         >
                             {isSubmitting ? (
-                                <>Sending...</>
+                                <>{language === 'ml' ? 'അയക്കുന്നു...' : 'Sending...'}</>
                             ) : (
                                 <>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                    Send Enquiry Automatically
+                                    {t.enquiry.submit}
                                 </>
                             )}
                         </button>
 
                         <div style={{ textAlign: 'center', margin: '16px 0' }}>
-                            <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>OR</span>
+                            <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{language === 'ml' ? 'അല്ലെങ്കിൽ' : 'OR'}</span>
                         </div>
 
                         <button
@@ -191,7 +199,7 @@ Message: ${formData.message}`;
                             }}
                         >
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                            Instant Enquiry via WhatsApp
+                            {t.enquiry.whatsapp}
                         </button>
                     </form>
                 </div>

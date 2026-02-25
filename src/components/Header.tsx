@@ -1,6 +1,11 @@
+'use client';
+
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Header() {
+    const { language, setLanguage } = useLanguage();
+
     return (
         <header style={{
             padding: '20px 24px',
@@ -17,35 +22,73 @@ export default function Header() {
                 justifyContent: 'space-between',
                 alignItems: 'center'
             }}>
-                <Link href="/" style={{
+                <Link href="/" className="header-brand" style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '12px',
+                    gap: '8px',
                     textDecoration: 'none'
                 }}>
                     <img
                         src="/Logo/android-chrome-512x512.png"
                         alt="Rahath Ayurvedic Logo"
+                        className="header-logo"
                         style={{
-                            height: '40px',
+                            height: '32px',
                             width: 'auto',
                             borderRadius: '4px'
                         }}
                     />
-                    <span style={{
-                        fontSize: '1.5rem',
+                    <span className="brand-text" style={{
+                        fontSize: '1.25rem',
                         fontWeight: '700',
                         color: 'var(--primary)',
-                        letterSpacing: '-0.5px'
+                        letterSpacing: '-0.5px',
+                        fontFamily: "'Outfit', sans-serif"
                     }}>
                         Rahath <span style={{ color: 'var(--foreground)', fontWeight: '400' }}>Ayurvedic</span>
                     </span>
                 </Link>
                 <nav style={{ display: 'none' }}> {/* Hidden for mobile-first landing, could add simple menu if needed */}
                 </nav>
-                <a href="tel:+919605424292" className="btn btn-primary" style={{ padding: '8px 20px', fontSize: '0.9rem' }}>
-                    Call Now
-                </a>
+
+                <div className="language-toggle" style={{
+                    display: 'flex',
+                    background: 'var(--accent)',
+                    padding: '3px',
+                    borderRadius: 'var(--radius-full)',
+                    gap: '2px'
+                }}>
+                    <button
+                        onClick={() => setLanguage('en')}
+                        style={{
+                            padding: '5px 12px',
+                            borderRadius: 'var(--radius-full)',
+                            fontSize: '0.8rem',
+                            fontWeight: '600',
+                            background: language === 'en' ? 'var(--primary)' : 'transparent',
+                            color: language === 'en' ? 'var(--white)' : 'var(--primary-dark)',
+                            transition: 'var(--transition)',
+                            fontFamily: "'Outfit', sans-serif"
+                        }}
+                    >
+                        EN
+                    </button>
+                    <button
+                        onClick={() => setLanguage('ml')}
+                        style={{
+                            padding: '5px 12px',
+                            borderRadius: 'var(--radius-full)',
+                            fontSize: '0.8rem',
+                            fontWeight: '600',
+                            background: language === 'ml' ? 'var(--primary)' : 'transparent',
+                            color: language === 'ml' ? 'var(--white)' : 'var(--primary-dark)',
+                            transition: 'var(--transition)',
+                            fontFamily: "'Outfit', sans-serif"
+                        }}
+                    >
+                        മല
+                    </button>
+                </div>
             </div>
         </header>
     );

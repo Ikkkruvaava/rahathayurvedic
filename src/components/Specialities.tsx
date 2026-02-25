@@ -1,24 +1,30 @@
+'use client';
+
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function Specialities() {
+    const { t } = useLanguage();
+
     const specs = [
         {
-            title: "Raw Herbal Medicines",
-            subtitle: "Dried, cut & powdered herbs",
+            title: t.specialities.items[0].title,
+            subtitle: t.specialities.items[0].subtitle,
             image: "/images/speciality-herbal1.webp",
-            description: "Authentic single herbs and traditional combinations, prepared with no artificial additives.",
+            description: t.specialities.items[0].desc,
             color: "#E8F0E6"
         },
         {
-            title: "Piles Care Support",
-            subtitle: "Traditional Herbal Support",
+            title: t.specialities.items[1].title,
+            subtitle: t.specialities.items[1].subtitle,
             image: "/images/speciality-piles1.webp",
-            description: "Ayurvedic support formulations designed for natural relief through traditional wisdom. (No cure claims)",
+            description: t.specialities.items[1].desc,
             color: "#F0EBE6"
         },
         {
-            title: "Postnatal Care",
-            subtitle: "Post-delivery herbal preparations",
+            title: t.specialities.items[2].title,
+            subtitle: t.specialities.items[2].subtitle,
             image: "/images/speciality-prasava1.webp",
-            description: "Carefully curated herbal sets for post-delivery wellness, following traditional Kerala practices.",
+            description: t.specialities.items[2].desc,
             color: "#E6EDF0"
         }
     ];
@@ -27,9 +33,9 @@ export default function Specialities() {
         <section id="specialities" style={{ background: 'var(--background)' }}>
             <div className="container">
                 <div className="text-center" style={{ marginBottom: '60px' }}>
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Our Specialities</h2>
+                    <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>{t.specialities.title}</h2>
                     <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>
-                        We specialize in traditional preparations that stay true to their roots.
+                        {t.specialities.subtitle}
                     </p>
                 </div>
                 <div className="grid grid-cols-3">
@@ -51,7 +57,7 @@ export default function Specialities() {
                                 <h3 style={{ fontSize: '1.5rem', marginBottom: '8px', color: 'var(--primary-dark)' }}>{spec.title}</h3>
                                 <p style={{ fontWeight: '500', color: 'var(--primary)', marginBottom: '24px', fontSize: '0.9rem', textTransform: 'uppercase' }}>{spec.subtitle}</p>
                                 <p style={{ color: 'var(--text-muted)', marginBottom: '32px' }}>{spec.description}</p>
-                                <a href="#enquiry" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>Enquire Now</a>
+                                <a href="#enquiry" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>{t.specialities.enquire_now}</a>
                             </div>
                         </div>
                     ))}

@@ -1,4 +1,10 @@
+'use client';
+
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function LocalSEO() {
+    const { t } = useLanguage();
+
     return (
         <section id="location" style={{ background: 'var(--cream)', padding: '0' }}>
             <div className="localseo-container" style={{
@@ -12,11 +18,9 @@ export default function LocalSEO() {
                     flexDirection: 'column',
                     justifyContent: 'center'
                 }}>
-                    <h2 style={{ fontSize: '2.25rem', marginBottom: '24px' }}>Visit Us in Mannarkkad</h2>
+                    <h2 style={{ fontSize: '2.25rem', marginBottom: '24px' }}>{t.localseo.title}</h2>
                     <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', marginBottom: '32px', lineHeight: '1.8' }}>
-                        Looking for an Ayurvedic shop near Hospital Junction Mannarkkad?
-                        <strong> Rahath Ayurvedic</strong> offers traditional herbal preparations prepared locally.
-                        We are conveniently located for all your herbal needs.
+                        {t.localseo.desc}
                     </p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                         <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
@@ -24,8 +28,8 @@ export default function LocalSEO() {
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                             </div>
                             <div>
-                                <p style={{ fontWeight: '600' }}>Location</p>
-                                <p style={{ color: 'var(--text-muted)' }}>Hospital Junction, Mannarkkad, Kerala</p>
+                                <p style={{ fontWeight: '600' }}>{t.localseo.address_label}</p>
+                                <p style={{ color: 'var(--text-muted)' }}>{t.localseo.address_value}</p>
                             </div>
                         </div>
                         <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
@@ -33,22 +37,9 @@ export default function LocalSEO() {
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                             </div>
                             <div>
-                                <p style={{ fontWeight: '600', marginBottom: '4px' }}>Opening Hours</p>
+                                <p style={{ fontWeight: '600', marginBottom: '4px' }}>{t.localseo.working_hours_label}</p>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-                                    <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', fontWeight: '500' }}>8:30 AM - 8:30 PM</p>
-                                    <span style={{
-                                        background: 'var(--accent)',
-                                        color: 'var(--primary)',
-                                        fontSize: '0.75rem',
-                                        fontWeight: '700',
-                                        padding: '4px 12px',
-                                        borderRadius: 'var(--radius-full)',
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.5px',
-                                        border: '1px solid rgba(45, 90, 39, 0.1)'
-                                    }}>
-                                        Open 7 Days
-                                    </span>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', fontWeight: '500' }}>{t.localseo.working_hours_value}</p>
                                 </div>
                             </div>
                         </div>

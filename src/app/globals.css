@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap');
 
 :root {
   --primary: #2D5A27;
@@ -44,6 +45,26 @@ body {
   background: var(--background);
   line-height: 1.6;
   scroll-behavior: smooth;
+}
+
+.font-ml {
+  font-family: 'Manjari', sans-serif;
+}
+
+.font-ml h1,
+.font-ml h2,
+.font-ml h3,
+.font-ml h4,
+.font-ml h5,
+.font-ml h6,
+.font-ml body,
+.font-ml p,
+.font-ml span,
+.font-ml a,
+.font-ml button,
+.font-ml input,
+.font-ml textarea {
+  font-family: 'Manjari', sans-serif;
 }
 
 h1,
@@ -281,5 +302,35 @@ section {
   .footer-grid {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
+  }
+}
+
+/* Header Specific Responsive Fixes */
+@media (max-width: 480px) {
+  .header-brand {
+    gap: 6px !important;
+  }
+
+  .brand-text {
+    font-size: 1.15rem !important;
+  }
+
+  .header-logo {
+    height: 28px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand-text span {
+    display: none;
+  }
+
+  .brand-text {
+    font-size: 1.25rem !important;
+  }
+
+  .language-toggle button {
+    padding: 4px 8px !important;
+    font-size: 0.75rem !important;
   }
 }
