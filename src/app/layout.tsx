@@ -9,8 +9,16 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Rahath Ayurvedic | Traditional Raw Herbal Medicines in Mannarkkad",
-  description: "Parambaragatha reethiyil thayyarakkunna pacha marunnukal & Ayurvedic formulations in Hospital Junction, Mannarkkad. Local trusted herbal support for 5+ years.",
+  description: "Traditional herbal remedies and Ayurvedic formulations prepared in an authentic way, located at Hospital Junction, Mannarkkad. A locally trusted herbal care provider for over 5 years.",
   keywords: "Ayurvedic shop Mannarkkad, herbal medicine Kerala, Rahath Ayurvedic, raw herbal medicines, Piles care Mannarkkad, Postnatal Care herbs",
+  icons: {
+    icon: [
+      { url: "/Logo/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/Logo/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/Logo/apple-touch-icon.png",
+  },
+  manifest: "/Logo/site.webmanifest",
 };
 
 export default function RootLayout({

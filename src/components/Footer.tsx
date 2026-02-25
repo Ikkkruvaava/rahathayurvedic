@@ -9,7 +9,18 @@ export default function Footer() {
                     marginBottom: '60px'
                 }}>
                     <div>
-                        <h3 style={{ color: 'var(--white)', fontSize: '1.5rem', marginBottom: '24px' }}>Rahath Ayurvedic</h3>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+                            <img
+                                src="/Logo/android-chrome-512x512.png"
+                                alt="Rahath Ayurvedic Logo"
+                                style={{
+                                    height: '50px',
+                                    width: 'auto',
+                                    borderRadius: '4px'
+                                }}
+                            />
+                            <h3 style={{ color: 'var(--white)', fontSize: '1.5rem' }}>Rahath Ayurvedic</h3>
+                        </div>
                         <p style={{ opacity: 0.8, marginBottom: '24px', maxWidth: '300px' }}>
                             Traditional Raw Herbal Medicines & Ayurvedic Support. Prepared with care for your health and well-being.
                         </p>

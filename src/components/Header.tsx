@@ -18,12 +18,28 @@ export default function Header() {
                 alignItems: 'center'
             }}>
                 <Link href="/" style={{
-                    fontSize: '1.5rem',
-                    fontWeight: '700',
-                    color: 'var(--primary)',
-                    letterSpacing: '-0.5px'
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    textDecoration: 'none'
                 }}>
-                    Rahath <span style={{ color: 'var(--foreground)', fontWeight: '400' }}>Ayurvedic</span>
+                    <img
+                        src="/Logo/android-chrome-512x512.png"
+                        alt="Rahath Ayurvedic Logo"
+                        style={{
+                            height: '40px',
+                            width: 'auto',
+                            borderRadius: '4px'
+                        }}
+                    />
+                    <span style={{
+                        fontSize: '1.5rem',
+                        fontWeight: '700',
+                        color: 'var(--primary)',
+                        letterSpacing: '-0.5px'
+                    }}>
+                        Rahath <span style={{ color: 'var(--foreground)', fontWeight: '400' }}>Ayurvedic</span>
+                    </span>
                 </Link>
                 <nav style={{ display: 'none' }}> {/* Hidden for mobile-first landing, could add simple menu if needed */}
                 </nav>

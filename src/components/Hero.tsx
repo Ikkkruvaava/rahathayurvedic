@@ -37,8 +37,7 @@ export default function Hero() {
                         marginBottom: '40px',
                         maxWidth: '600px'
                     }}>
-                        Parambaragatha reethiyil thayyarakkunna pacha marunnukal & Ayurvedic formulations.
-                        Prepared with care for your well-being.
+                        Traditional herbal remedies and Ayurvedic formulations, carefully prepared with authenticity and dedication for your well-being.
                     </p>
                     <div className="hero-buttons" style={{
                         display: 'flex',
