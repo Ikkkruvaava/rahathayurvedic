@@ -13,6 +13,31 @@ export default function CallBackPopup() {
         return () => clearTimeout(timer);
     }, []);
 
+    const [phone, setPhone] = useState('');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: 'callback', phone }),
+            });
+
+            if (response.ok) {
+                alert('Success! We will call you soon.');
+            } else {
+                alert('Failed to send request. Please try calling us directly.');
+            }
+        } catch (error) {
+            alert('Error sending request. Please check your connection.');
+        }
+
+        setPhone('');
+        setIsMinimized(true);
+    };
+
     if (isMinimized) {
         return (
             <button
@@ -70,14 +95,12 @@ export default function CallBackPopup() {
                 Leave your number and we'll call you back within 24 hours.
             </p>
 
-            <form onSubmit={(e) => {
-                e.preventDefault();
-                alert('Thank you! We will call you soon.');
-                setIsMinimized(true);
-            }}>
+            <form onSubmit={handleSubmit}>
                 <input
                     type="tel"
                     placeholder="Your Phone Number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     required
                     style={{
                         width: '100%',

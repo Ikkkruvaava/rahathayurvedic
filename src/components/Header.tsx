@@ -27,7 +27,7 @@ export default function Header() {
                 </Link>
                 <nav style={{ display: 'none' }}> {/* Hidden for mobile-first landing, could add simple menu if needed */}
                 </nav>
-                <a href="tel:+919876543210" className="btn btn-primary" style={{ padding: '8px 20px', fontSize: '0.9rem' }}>
+                <a href="tel:+919605424292" className="btn btn-primary" style={{ padding: '8px 20px', fontSize: '0.9rem' }}>
                     Call Now
                 </a>
             </div>

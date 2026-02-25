@@ -14,21 +14,33 @@ export default function EnquiryForm() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsSubmitting(true);
 
-        // WhatsApp redirect logic
-        const waText = `Hello Rahath Ayurvedic, I have an enquiry:
-Name: ${formData.name}
-Phone: ${formData.phone}
-Concern: ${formData.concern}
-Message: ${formData.message}`;
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'enquiry',
+                    ...formData
+                }),
+            });
 
-        const waUrl = `https://wa.me/919876543210?text=${encodeURIComponent(waText)}`;
-        window.open(waUrl, '_blank');
-
-        // reset form or show success
-        alert('Thank you! Redirecting to WhatsApp for confirmation.');
+            if (response.ok) {
+                alert('Success! Your enquiry has been sent automatically.');
+                setFormData({ name: '', phone: '', concern: '', message: '' });
+            } else {
+                alert('Something went wrong with the email. Please try WhatsApp instead.');
+            }
+        } catch (error) {
+            alert('Failed to send enquiry. Please check your connection.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -127,8 +139,59 @@ Message: ${formData.message}`;
                             ></textarea>
                         </div>
 
-                        <button type="submit" className="btn btn-primary" style={{ height: '56px', fontSize: '1.1rem' }}>
-                            Send Enquiry via WhatsApp
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="btn btn-primary"
+                            style={{
+                                height: '56px',
+                                fontSize: '1.1rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '8px',
+                                opacity: isSubmitting ? 0.7 : 1,
+                                cursor: isSubmitting ? 'not-allowed' : 'pointer'
+                            }}
+                        >
+                            {isSubmitting ? (
+                                <>Sending...</>
+                            ) : (
+                                <>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    Send Enquiry Automatically
+                                </>
+                            )}
+                        </button>
+
+                        <div style={{ textAlign: 'center', margin: '16px 0' }}>
+                            <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>OR</span>
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={() => {
+                                const waText = `Hello Rahath Ayurvedic, I have an enquiry:
+Name: ${formData.name}
+Phone: ${formData.phone}
+Concern: ${formData.concern}
+Message: ${formData.message}`;
+                                const waUrl = `https://wa.me/919605424292?text=${encodeURIComponent(waText)}`;
+                                window.open(waUrl, '_blank');
+                            }}
+                            className="btn btn-secondary"
+                            style={{
+                                width: '100%',
+                                height: '56px',
+                                fontSize: '1rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '8px'
+                            }}
+                        >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            Instant Enquiry via WhatsApp
                         </button>
                     </form>
                 </div>
